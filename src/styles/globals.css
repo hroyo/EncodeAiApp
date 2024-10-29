@@ -1,0 +1,23 @@
+/* globals.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.MuiDrawer-root .MuiDrawer-paper {
+    /* width: 250px !important; */
+}
+
+/* Example custom drawer styles */
+/* .mui-16cvh3m-MuiDrawer-docked .MuiDrawer-paper {
+    width: 230px !important;
+} */
+/* .MuiDrawer-root .MuiDrawer-docked .MuiDrawer-paper {
+    width: 230px !important;
+} */
+
+/* .mui-17ueht1-MuiDrawer-docked .MuiDrawer-paper.collapsed {
+    width: 64px !important;
+} */

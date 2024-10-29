@@ -1,0 +1,51 @@
+import React, { useState } from 'react';
+
+const DalleImageGenerator = () => {
+    const [prompt, setPrompt] = useState('');
+    const [imageUrl, setImageUrl] = useState(null);
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        try {
+            const res = await fetch('/api/dalle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt }), // Send the prompt for image generation
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to generate image');
+            }
+
+            const data = await res.json();
+            setImageUrl(data.imageUrl); // Set the returned image URL
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    placeholder="Enter a prompt to generate an image"
+                />
+                <button type="submit">Generate Image</button>
+            </form>
+            {imageUrl && (
+                <div>
+                    <h2>Generated Image:</h2>
+                    <img src={imageUrl} alt="Generated" width="300" />
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default DalleImageGenerator;
